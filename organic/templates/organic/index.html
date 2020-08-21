@@ -22,7 +22,6 @@
 
         <div>
             <form action="{% url 'organic:organic_identifier' %}" method="post">
-                {% csrf token %}
                 <input type="text" placeholder="Structural Formula" name="structuralFormula">
                 <input type="submit">
             </form>
