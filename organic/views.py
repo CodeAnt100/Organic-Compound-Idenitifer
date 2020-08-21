@@ -589,7 +589,11 @@ def index(request):
 
 def organic_identifier(request, chemicalFormula):
 
-    print("formula", chemicalFormula)
+    if request.method == "POST":
+        chemicalFormula = request.POST.get("structuralFormula")
+
     chemicalName = organic_identification(chemicalFormula)
 
-    return render(request, "organic/identification.html", {"chemicalName": chemicalName})
+    return render(request, "organic/identification.html", {
+        "chemicalName": chemicalName,
+        "chemicalFormula": chemicalFormula})

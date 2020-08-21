@@ -6,18 +6,27 @@
     </head>
 
     <body>
-        Welcome to the organic identification program! <br>
+        <h2> Welcome to the organic identification program! </h2><br>
         This program allows you to input a structural formula for an organic compound and outputs its IUPAC name. <br>
         The types of functional groups and organic compounds this program can identify include:
         <ul>
             <li>Alkanes, Alkenes, Alkynes (including compounds with multiple double and triple bonds)</li>
             <li>Carboxylic Acids (COOH), Nitriles (CN), Aldehydes (CHO), Ketones (COC), Alcohols (OH) and Amines (NH2)</li>
             <li>Compounds with multiple functional groups in different positions and with correct precedence naming</li>
-            <li>Branched compounds containing Fluorine (F), Iodine (I), Bromine (Br) and Alkyls (CH3, C2H5, etc.)</li>
+            <li>Branched compounds containing Fluorine (F), Iodine (I), Bromine (Br), Chlorine (Cl) and Alkyls (CH3, C2H5, etc.)</li>
         </ul>
+        N.B. The program does not accept condensed structural formulae (e.g. CH3(CH2)5CH3)
 
         <br>
         Enter the structural formula you wish to find the name of into the URL above.
+
+        <div>
+            <form action="{% url organic:organic_identifier %}" method="post">
+                {% csrf token %}
+                <input type="text" placeholder="Structural Formula" name="structuralFormula">
+                <input type="submit">
+            </form>
+        </div>
 
     </body>
 </html>
