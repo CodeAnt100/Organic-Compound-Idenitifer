@@ -6,3 +6,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("<str:chemicalFormula>", views.organic_identifier, name="organic_identifier")
 ]
+
+
