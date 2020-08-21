@@ -21,7 +21,7 @@
         Enter the structural formula you wish to find the name of into the URL above.
 
         <div>
-            <form action="{% url organic:organic_identifier %}" method="post">
+            <form action="{% url 'organic:organic_identifier' %}" method="post">
                 {% csrf token %}
                 <input type="text" placeholder="Structural Formula" name="structuralFormula">
                 <input type="submit">
