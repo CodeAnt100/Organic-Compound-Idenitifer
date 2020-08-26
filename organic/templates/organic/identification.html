@@ -2,10 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'organic/organicstyles.css' %}">
         <title>Organic Identification</title>
     </head>
 
     <body>
-        {{ chemicalFormula }} is {{ chemicalName }}
+        <div>
+            {{ chemicalFormula }} is {{ chemicalName }}
+        </div>
+
+        <br>
+        <a href="{% url 'index' %}">Main Page</a>
     </body>
+
+
 </html>

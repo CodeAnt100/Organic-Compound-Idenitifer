@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from django import forms
+from django.http import HttpResponseRedirect
 
 # Defines the organic identification function
 def organic_identification(structuralFormula):
@@ -582,9 +583,15 @@ def organic_identification(structuralFormula):
 # ---------------------------------------------------------------------------------------------------------------------
 
 
+# Creates an organic compound input form
+class OrganicForm(forms.Form):
+    structuralFormula = forms.CharField(label="Structural Formula")
+
+
 # Create your views here.
 def index(request):
-    return render(request, "organic/index.html")
+    form = OrganicForm()
+    return render(request, "organic/index.html", {"form": form})
 
 
 def organic_identifier(request, chemicalFormula):
@@ -593,3 +600,18 @@ def organic_identifier(request, chemicalFormula):
     return render(request, "organic/identification.html", {
         "chemicalName": chemicalName,
         "chemicalFormula": chemicalFormula})
+
+
+def organic_identifier_form(request):
+
+    if request.method == "POST":
+        form = OrganicForm(request.POST)
+
+        if form.is_valid():
+            chemicalFormula = form.cleaned_data["structuralFormula"]
+            return HttpResponseRedirect("/organic/formula/" + chemicalFormula)
+
+    else:
+        form = OrganicForm()
+
+    return render(request, "index.html", {"form": form})

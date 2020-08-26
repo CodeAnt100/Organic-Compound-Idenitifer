@@ -2,11 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'organic/organicstyles.css' %}">
         <title>Organic Identification</title>
     </head>
 
     <body>
-        <h2> Welcome to the organic identification program! </h2><br>
+        <h2> Welcome to the organic identification program! </h2> Made by Anant Gupta <br><br><br>
         This program allows you to input a structural formula for an organic compound and outputs its IUPAC name. <br>
         The types of functional groups and organic compounds this program can identify include:
         <ul>
@@ -18,7 +20,19 @@
         N.B. The program does not accept condensed structural formulae (e.g. CH3(CH2)5CH3)
 
         <br>
-        Enter the structural formula you wish to find the name of into the URL above.
+        Enter the structural formula you wish to find the name of into the search bar below.
+        <br><br>
+
+        <div class="search-area">
+            <form action = "/organic/redirect" method="post">
+                {% csrf_token %}
+
+                    {{ form }}
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
 
     </body>
 </html>
